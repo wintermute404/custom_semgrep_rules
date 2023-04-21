@@ -1,0 +1,35 @@
+on:
+  # pull_request: {}
+  # push:
+  #   branches:
+  #   - main
+  #   paths:
+  #   - .github/workflows/semgrep.yml
+  # schedule:
+  # - cron: '0 0 * * 0'
+name: Semgrep SAST Scan
+jobs:
+  semgrep:
+    name: Scan
+    runs-on: ubuntu-20.04
+    container:
+      image: returntocorp/semgrep
+    steps:
+    - name: Checkout rules
+      uses: actions/checkout@v3
+      with:
+        repository: wintermute404/custom_semgrep_rules
+        path: ./rules
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        repository: wintermute404/DVWA
+        path: ./code
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Run all the rules 
+      id: run_rules_nonpr
+      run: |
+        semgrep scan --sarif --config ./rules/ ./code > nonpr.sarif;
