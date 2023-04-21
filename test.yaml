@@ -1,0 +1,12 @@
+rules:
+- id: python-no-prints-in-prod
+  patterns:
+    - pattern: redirect(...)
+    - pattern-regex: (sanitize|validate|safe|check|verify)
+    - pattern-inside: 
+      def $X(..., $URI_VAR, ...):
+        ...
+        flask.redirect($URI_VAR)
+  message: open redirect
+  languages: [python]
+  severity: WARNING
