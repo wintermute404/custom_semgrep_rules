@@ -34,4 +34,4 @@ jobs:
     - name: Run all the rules 
       id: run_rules_nonpr
       run: |
-        semgrep scan --sarif --metrics=off --config ./rules/ ./code > nonpr.sarif;
+        semgrep scan --sarif --metrics=off --config=./rules/ ./code > nonpr.sarif;
