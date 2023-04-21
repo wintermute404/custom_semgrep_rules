@@ -1,12 +1,7 @@
 on:
-  # pull_request: {}
-  # push:
-  #   branches:
-  #   - main
-  #   paths:
-  #   - .github/workflows/semgrep.yml
-  # schedule:
-  # - cron: '0 0 * * 0'
+  schedule:
+    - cron:  '0 1 * * 6'
+  
 name: Semgrep SAST Scan
 jobs:
   semgrep:
