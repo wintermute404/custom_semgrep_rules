@@ -20,7 +20,7 @@ jobs:
     - name: Checkout rules
       uses: actions/checkout@v3
       with:
-        repository: wintermute404/custom_semgrep_rules
+        repository: wintermute404/semgrep-rules
         path: ./rules
     - name: Checkout code
       uses: actions/checkout@v3
